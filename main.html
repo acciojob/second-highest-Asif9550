@@ -9,23 +9,43 @@
 <body>	
 	<script>
 		function secondHighest(arr) {
-			//Write your code here
-			
+			// Convert input to integers
+			arr = arr.map(Number);
+
+			// Check for invalid cases
+			if (arr.length < 2) {
+				return -Infinity; // Less than two elements
+			}
+
+			let max = -Infinity;
+			let secondMax = -Infinity;
+
+			// Loop through the array to find max and second max
+			for (let num of arr) {
+				if (num > max) {
+					secondMax = max;
+					max = num;
+				} else if (num > secondMax && num !== max) {
+					secondMax = num;
+				}
+			}
+
+			return secondMax === -Infinity ? -Infinity : secondMax;
 		}
 
 		function Main() {
 			var n = prompt("Enter the number of elements");
+			n = parseInt(n); // Ensure input is a number
 			var arr = [];
 			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
+				arr[i] = prompt("Enter element " + (i + 1));
 			}
 			alert(secondHighest(arr));
 		}
 		Main();
 	</script>
 
-    <script type="text/javascript" src="./script.js">
-</script>
+    <script type="text/javascript" src="./script.js"></script>
 
 </body>
 
